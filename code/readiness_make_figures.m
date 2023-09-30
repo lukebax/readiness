@@ -89,7 +89,7 @@ yearcount_y = year_yearCounts(:,2);
 
 figure;
 
-subplot(1,2,1)
+subplot(2,2,1)
 bar(yearcount_x, yearcount_y);
 
 for i=1:numel(yearcount_x)
@@ -108,7 +108,7 @@ ax.FontSize = axis_font_size;
 
 explode_vec = ones(length(all_vaccines_unique), 1) * 3;
 
-subplot(1,2,2)
+subplot(2,2,2)
 p = pie(X_piechart_vaccines, all_vaccines_unique);
 
 pText = findobj(p,'Type','text');
@@ -119,32 +119,7 @@ pText(17).Position(2) = (pText(17).Position(2)) * 1.05; % move Yellow Fever labe
 ax = gca;
 ax.FontSize = axis_font_size;
 
-fig_size_x = 12;
-fig_size_y = 5;
-
-set(gcf,...
-    'Units', 'Inches', ...
-    'Position', [0, 0, fig_size_x, fig_size_y], ...
-    'PaperPositionMode', 'auto');
-
-section_labels_x = [0.07, 0.48];
-section_labels_y = 0.98;
-section_labels_fontsize = 17;
-
-a = annotation('textbox', [section_labels_x(1), section_labels_y, 0, 0], 'string', 'a.');
-a.FontSize = section_labels_fontsize;
-
-a = annotation('textbox', [section_labels_x(2), section_labels_y, 0, 0], 'string', 'b.');
-a.FontSize = section_labels_fontsize;
-
-saveas(gcf, 'readiness_figure_2', 'epsc');
-
-
-%% make plots - fig 3
-
-figure;
-
-subplot(1,2,1)
+subplot(2,2,3)
 barh(methodology_y, methodology_x);
 for i=1:numel(methodology_x)
     text(methodology_x(i)+1.5, methodology_y_numeric(i) - 0.25, num2str(methodology_x(i)),...
@@ -156,9 +131,7 @@ xlim([0, max(methodology_x)+4]);
 ax = gca;
 ax.FontSize = axis_font_size;
 
-
-
-subplot(1,2,2)
+subplot(2,2,4)
 barh(content_y, content_x);
 for i=1:numel(content_x)
     text(content_x(i)+0.75, content_y_numeric(i) - 0.25, num2str(content_x(i)),...
@@ -170,29 +143,34 @@ xlim([0, max(content_x)+2]);
 ax = gca;
 ax.FontSize = axis_font_size;
 
-fig_size_x = 12;
-fig_size_y = 5;
+fig_size_x = 13;
+fig_size_y = 11;
 
 set(gcf,...
     'Units', 'Inches', ...
     'Position', [0, 0, fig_size_x, fig_size_y], ...
     'PaperPositionMode', 'auto');
 
-section_labels_x = [0.02, 0.48];
-section_labels_y = 0.98;
+section_labels_x = [0.03, 0.475];
+section_labels_y = [0.955, 0.48];
 section_labels_fontsize = 17;
 
-a = annotation('textbox', [section_labels_x(1), section_labels_y, 0, 0], 'string', 'a.');
+a = annotation('textbox', [section_labels_x(1), section_labels_y(1), 0, 0], 'string', 'a.');
 a.FontSize = section_labels_fontsize;
 
-a = annotation('textbox', [section_labels_x(2), section_labels_y, 0, 0], 'string', 'b.');
+a = annotation('textbox', [section_labels_x(2), section_labels_y(1), 0, 0], 'string', 'b.');
 a.FontSize = section_labels_fontsize;
 
-saveas(gcf, 'readiness_figure_3', 'epsc');
+a = annotation('textbox', [section_labels_x(1), section_labels_y(2), 0, 0], 'string', 'c.');
+a.FontSize = section_labels_fontsize;
+
+a = annotation('textbox', [section_labels_x(2), section_labels_y(2), 0, 0], 'string', 'd.');
+a.FontSize = section_labels_fontsize;
+
+saveas(gcf, 'readiness_figure_2', 'epsc');
 
 
 %% make plots - fig 4
-
 
 figure;
 
@@ -208,5 +186,5 @@ xlim([0, max(themecount_x)+4]);
 ax = gca;
 ax.FontSize = axis_font_size;
 
-saveas(gcf, 'readiness_figure_4', 'epsc');
+saveas(gcf, 'readiness_figure_3', 'epsc');
 
