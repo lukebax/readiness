@@ -5,6 +5,12 @@ path_to_inputFolder = "../data/";
 path_to_inputDataFile = fullfile(path_to_inputFolder, 'readiness_data');
 T = readtable(path_to_inputDataFile);
 
+%% make output folder
+output_folder = '../results/';
+
+if ~exist(output_folder, 'dir')
+    mkdir(output_folder)
+end
 
 %% Sum theme counts across themes (columns) and publications (rows)
 
@@ -167,8 +173,8 @@ a.FontSize = section_labels_fontsize;
 a = annotation('textbox', [section_labels_x(2), section_labels_y(2), 0, 0], 'string', 'd.');
 a.FontSize = section_labels_fontsize;
 
-saveas(gcf, 'readiness_figure_2', 'epsc');
-
+fig_file_name = strcat(output_folder, 'readiness_figure_2.pdf');
+exportgraphics(gcf,fig_file_name)
 
 %% make plots - fig 4
 
@@ -186,5 +192,5 @@ xlim([0, max(themecount_x)+4]);
 ax = gca;
 ax.FontSize = axis_font_size;
 
-saveas(gcf, 'readiness_figure_3', 'epsc');
-
+fig_file_name = strcat(output_folder, 'readiness_figure_3.pdf');
+exportgraphics(gcf,fig_file_name)
